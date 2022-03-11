@@ -1,10 +1,10 @@
 # Reproduction and Social Mobility
-This project aims to replicate the social mobility theory by Alan Rogers (1990). See [here](./draft/abstract.txt) for an abstract.
+This project aims to replicate the social mobility theory by Alan Rogers (1990). See [here](./draft/abstract.md) for an abstract.
 
 There are three sets of code that constitute this replication:
 
 ### 1. Leslie Matrix Model
-First, I reproduce the Leslie matrix model in R. See file [leslie_matrix_model.R](./code/leslie_matrix_model.R) and its supporting functions in [leslie_matrix_functions.R](./code/leslie_matrix_functions.R). The matrix model is the backbone of the social mobility model. It basically shows that the **growth rates** for a population and its age/wealth classes, the age/wealth **class distribution** in the population, and the proportions of **long-term fitness** can be captured by the dominant eigenvalue, the corresponding eigenvector, and the corresponding left eigenvector, respectively.
+First, I reproduce the Leslie matrix model in R. See file [leslie_matrix_model.R](./code/leslie_matrix_model.R) and its supporting functions in [leslie_matrix_functions.R](./code/leslie_matrix_functions.R). The matrix model is the backbone of the social mobility model. It basically shows that the **growth rates** for a population and its age/wealth classes, the age/wealth **class distribution** in the population, and the proportions of **long-term fitness** can be captured by the dominant eigenvalue, the corresponding eigenvector, and the corresponding left eigenvector, respectively. See visualizations in the [figures](./figures) folder.
 
 For the certain leslie matrices I have tried, we see that for individuals in the third class, they reproduce less offspring, but in the long-run, they have a higher fitness (genetic representation) in the population.
 

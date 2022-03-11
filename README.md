@@ -14,4 +14,4 @@ The second part attempts to replicate the core of the social mobility model, in 
 
 
 ### 3. Data Analysis
-The data produced by the model is analyzed in the third part: [analyze_data.R](./code/analyze_data.R), which makes use of [read_data.R](./code/read_data.R). The preliminary analysis shows no clear pattern as said in the [abstract](./draft/abstract.txt). Further analysis will be added.
+The data produced by the model is analyzed in the third part: [analyze_data.R](./code/analyze_data.R), which makes use of [read_data.R](./code/read_data.R). The preliminary analysis shows no clear pattern as said in the [abstract](./draft/abstract.md). Further analysis will be added.

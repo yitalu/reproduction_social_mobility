@@ -10,7 +10,7 @@ For the certain leslie matrices I have tried, we see that for individuals in the
 
 
 ### 2. Social Mobility Model
-The second part attempts to replicate the core of the social mobility model, in which parents maximize long-term growth rates by choosing a best reproductive strategy --- an optimized fertility allocation as a proportion of their wealth. See [social_mobility_model.py](./code/social_mobility_model.py) as the start. It makes use of the optimization algorithm [social_mobility_optimization.py](./code/social_mobility_optimization.py) and its supporting functions [social_mobility_functions.py](./code/social_mobility_functions.py). Input desired parameters in the PARAMETERS part of [social_mobility_model.py](./code/social_mobility_model.py) and get your data in the [data](./data) folder.
+The second part attempts to replicate the core of the social mobility model, in which parents maximize long-term growth rates by choosing a best reproductive strategy --- an optimized fertility allocation as a proportion of their wealth. See [social_mobility_model.py](./code/social_mobility_model.py) as the start. It makes use of the optimization algorithm [social_mobility_optimization.py](./code/social_mobility_optimization.py) and its supporting functions in [social_mobility_functions.py](./code/social_mobility_functions.py). Input desired parameters in the PARAMETERS part of [social_mobility_model.py](./code/social_mobility_model.py) and get your data in the [data](./data) folder.
 
 
 ### 3. Data Analysis

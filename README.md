@@ -17,7 +17,7 @@ The second part attempts to replicate the core of the social mobility model, in 
 The data produced by the model is analyzed in the third part: [analyze_data.R](./code/analyze_data.R), which makes use of [read_data.R](./code/read_data.R). The preliminary analysis shows no clear pattern as said in the [abstract](./draft/abstract.md). Further analysis will be added.
 
 
----
+
 [^1]: Rogers, A. R. (1990). Evolutionary economics of human reproduction. *Ethology and Sociobiology, 11*(6), 479-495.
 
 [^2]: Harpending, H., & Rogers, A. (1990). Fitness in stratified societies. *Ethology and sociobiology, 11*(6), 497-509.

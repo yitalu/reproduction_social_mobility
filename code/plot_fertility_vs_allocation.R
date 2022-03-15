@@ -3,7 +3,7 @@
 rm(list = ls())
 
 num_class <- 15
-max_offspring <- 3
+max_offspring <- 15
 starvation_threshold <- 3
 fertility_allocation <- 0:(num_class - 1)
 
@@ -11,5 +11,5 @@ fertility <- max_offspring * (1 - exp(-(fertility_allocation - starvation_thresh
 
 fertility <- pmax(fertility, 0) # clip at 0
 
-plot(fertility_allocation, fertility, type = "l", lty = 1, ylim = c(0, 5), main = "Fertility vs Allocation")
+plot(fertility_allocation, fertility, type = "l", lty = 1, ylim = c(0, max_offspring + 2), main = "Fertility vs Allocation")
 points(fertility_allocation, fertility)

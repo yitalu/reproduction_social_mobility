@@ -1,5 +1,5 @@
 # Reproduction and Social Mobility
-This project aims to replicate the social mobility theory by Alan Rogers (1990). See [here](./draft/abstract.md) for an abstract.
+This project aims to replicate the social mobility theory by Alan Rogers [^1] [^2]. See [here](./draft/abstract.md) for an abstract.
 
 There are three sets of code that constitute this replication:
 
@@ -15,3 +15,9 @@ The second part attempts to replicate the core of the social mobility model, in 
 
 ### 3. Data Analysis
 The data produced by the model is analyzed in the third part: [analyze_data.R](./code/analyze_data.R), which makes use of [read_data.R](./code/read_data.R). The preliminary analysis shows no clear pattern as said in the [abstract](./draft/abstract.md). Further analysis will be added.
+
+
+---
+[^1]: Rogers, A. R. (1990). Evolutionary economics of human reproduction. *Ethology and Sociobiology, 11*(6), 479-495.
+
+[^2]: Harpending, H., & Rogers, A. (1990). Fitness in stratified societies. *Ethology and sociobiology, 11*(6), 497-509.

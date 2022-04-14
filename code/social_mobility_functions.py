@@ -22,16 +22,19 @@ def investment_fertility(fertility_allocation, max_num_offspring, starvation_thr
     """transform fertility allocations to real fertilities, according to a law of diminishing return and starvation threshold"""
 
     # fertility as a diminishing return function of allocation
-    fertility = max_num_offspring * (1 - np.exp(-(fertility_allocation - starvation_threshold)))
+    max_fertility = max_num_offspring * (1 - np.exp(-(fertility_allocation - starvation_threshold)))
 
     # interger fertility
-    fertility = np.round(fertility).astype(int)
+    max_fertility = np.round(max_fertility).astype(int)
     
     # fertilities do not exceed the upper bound
-    fertility = np.clip(fertility, 0, max_num_offspring)
+    max_fertility = np.clip(max_fertility, 0, max_num_offspring)
+
+    # transform allocation to real fertilities
+    fertility_realized = np.clip(fertility_allocation, 0, max_fertility)
     
-    # print("fertility", fertility)
-    return fertility
+    # print("fertility_realized", fertility_realized)
+    return fertility_realized
 
 
 

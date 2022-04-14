@@ -11,8 +11,8 @@ source("./code/read_data.R")
 # frequencies of optimal grwoth rate
 table(optimal_growth_rates$V1)
 
-# png(file = "./social_mobility/figures/frequency_growth_rate_proportional_earning_4.png", width = 1200, height = 800, res = 180)
-hist(optimal_growth_rates$V1, breaks=50, xlab = "Optimal Growth Rate", main="Frequncy of Optimal Growth Rate (Prop. Earn 4)", xlim = c(0, ceiling(max(optimal_growth_rates$V1))))
+# pdf(file = "./figures/frequency_growth_rate_no_fertility_bound.pdf", width = 6, height = 4.3)
+hist(optimal_growth_rates$V1, breaks=50, xlab = "Optimal Growth Rate", main="Frequncy of Optimal Growth Rate", xlim = c(0, ceiling(max(optimal_growth_rates$V1))))
 # dev.off()
 
 
@@ -55,20 +55,23 @@ fertility <- pmax(fertility, 0) # clip at 0
 
 
 # plot optimized allocation
+# pdf(file="./figures/optimized_allocation.pdf", width = 6, height = 4.3)
 plot(fertility_allocation, fertility, type = "l", lty = 1, ylim = c(0, num_class + 2), main = "Fertility allocations in different wealth classes", xlab = "wealth class", ylab = "fertility allocation")
 
-points(fertility_allocation, fertility)
+# points(fertility_allocation, fertility)
 
 for (i in 1:nrow(optimized_fertilities)) {
   points(fertility_allocation, optimized_allocations[i, ], pch=4, cex=0.5)
 }
-
+# dev.off()
 
 # plot optimized fertility
+# pdf(file="./figures/optimized_fertility.pdf", width = 6, height = 4.3)
 plot(fertility_allocation, fertility, type="l", lty=1, ylim=c(0, max_offspring + 2), main="Fertility for different wealth class", xlab="wealth class", ylab="fertility")
 
-points(fertility_allocation, fertility)
+# points(fertility_allocation, fertility)
 
 for (i in 1:nrow(optimized_fertilities)) {
   points(fertility_allocation, optimized_fertilities[i, ], pch=4, cex=0.5)
 }
+# dev.off()

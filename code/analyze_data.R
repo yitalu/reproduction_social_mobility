@@ -45,7 +45,7 @@ nrow(unique(optimal_fertility))
 
 # parameters in plots
 num_class <- ncol(optimal_allocations)
-max_offspring <- 3
+max_offspring <- 15
 starvation_threshold <- 3
 fertility_allocation <- 0:(num_class - 1)
 

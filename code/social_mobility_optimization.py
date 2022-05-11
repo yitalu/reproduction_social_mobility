@@ -21,7 +21,7 @@ def optimize(wealth, mean_earned_wealth, starvation_threshold, max_num_offspring
         allocation_initial = func.generate_allocation(wealth)
         fertility_initial =func.investment_fertility(allocation_initial, max_num_offspring, starvation_threshold)
         leslie_initial = func.generate_leslie(allocation_initial, fertility_initial, wealth, mean_earned_wealth)
-        growth_rate_initial = func.calculate_growth_rate(leslie_initial)
+        growth_rate_initial = func.calculate_growth_rate(leslie_initial)[0]
         
         # record initial data
         optimal_allocations[i, 0:len(wealth)] = allocation_initial
@@ -41,7 +41,7 @@ def optimize(wealth, mean_earned_wealth, starvation_threshold, max_num_offspring
             allocation_perturbed = perturbation_unique[j, :]
             fertility_perturbed = func.investment_fertility(allocation_perturbed, max_num_offspring, starvation_threshold)
             leslie_perturbed = func.generate_leslie(allocation_perturbed, fertility_perturbed, wealth, mean_earned_wealth)
-            growth_rate_perturbed = func.calculate_growth_rate(leslie_perturbed)
+            growth_rate_perturbed = func.calculate_growth_rate(leslie_perturbed)[0]
 
 
             # replace the recorded with the perturbed if growth rate is improved

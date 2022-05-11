@@ -24,7 +24,7 @@ wealth = np.arange(num_class)
 mean_earned_wealth = 3
 starvation_threshold = 3
 max_num_offspring = 3
-num_search = 100
+num_search = 1000
 
 
 

@@ -1,4 +1,5 @@
 # This script provides functions needed in "./code/social_mobility_optimization.py"
+from cv2 import eigen
 import numpy as np
 from numpy.random import beta
 
@@ -145,22 +146,30 @@ def generate_leslie(fertility_allocation, fertility_realized, wealth, mean_poiss
 
 
 def calculate_growth_rate(leslie):
-    """calculate the long-term growth rate of a leslie matrix"""
+    """calculate the growth rate of a leslie matrix and its corresponding class proportion (right eigenvector) and long-term fitness (left eigenvector)"""
 
-    # find the eigenvalues and eigenvectors
-    eigenvalues, eigenvectors = np.linalg.eig(leslie)
+    # find the eigenvalues and right eigenvectors
+    # eigenvalues = np.linalg.eigvals(leslie)
+    eigenvalues, eigenvectors_right = np.linalg.eig(leslie)
     # print("eigenvalues", eigenvalues)
-    # print("eigenvectors", eigenvectors)
-    
-    # growth rate as the max eigenvalue in real number
-    growth_rate = np.max(eigenvalues).real
+    # print("eigenvectors", eigenvectors_right)
 
-    if growth_rate.imag != 0:
-        print("warning: growth rate is a complex number")
-        # growth_rate = 'a complex number'
+    # get the growth rate (eigenvalue with maximum magnitude)
+    growth_rate = np.abs(eigenvalues).max()
+    
+    # get the class proportion corresponding to the growth rate
+    index_max = np.abs(eigenvalues).argmax()
+    class_proportion = eigenvectors_right[index_max]
+
+    # get the dominant left eigenvector as long-term fitnesses
+    leslie_transposed = leslie.transpose()
+    # eigenvalues_left = np.linalg.eigvals(leslie_transposed) # order is different from previously defined eigenvalues
+    eigenvalues_left, eigenvectors_left = np.linalg.eig(leslie_transposed)
+    index_max = np.abs(eigenvalues_left).argmax()
+    long_term_fitnesses = eigenvectors_left[index_max]
 
     # print("growth_rate", growth_rate)
-    return growth_rate
+    return growth_rate, class_proportion, long_term_fitnesses
 
 
 

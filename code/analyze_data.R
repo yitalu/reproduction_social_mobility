@@ -45,7 +45,7 @@ nrow(unique(optimal_fertility))
 
 # parameters in plots
 num_class <- ncol(optimal_allocations)
-max_offspring <- 15
+max_offspring <- 3
 starvation_threshold <- 3
 fertility_allocation <- 0:(num_class - 1)
 
@@ -61,7 +61,7 @@ plot(fertility_allocation, fertility, type = "l", lty = 1, ylim = c(0, num_class
 # points(fertility_allocation, fertility)
 
 for (i in 1:nrow(optimized_fertilities)) {
-  points(fertility_allocation, optimized_allocations[i, ], pch=4, cex=0.5)
+  points(jitter(fertility_allocation, 1), optimized_allocations[i, ], pch=4, cex=0.5)
 }
 # dev.off()
 
@@ -72,6 +72,6 @@ plot(fertility_allocation, fertility, type="l", lty=1, ylim=c(0, max_offspring +
 # points(fertility_allocation, fertility)
 
 for (i in 1:nrow(optimized_fertilities)) {
-  points(fertility_allocation, optimized_fertilities[i, ], pch=4, cex=0.5)
+  points(jitter(fertility_allocation, 1), optimized_fertilities[i, ], pch=4, cex=0.5)
 }
 # dev.off()

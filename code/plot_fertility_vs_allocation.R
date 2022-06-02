@@ -12,4 +12,5 @@ fertility <- max_offspring * (1 - exp(-(fertility_allocation - starvation_thresh
 fertility <- pmax(fertility, 0) # clip at 0
 
 plot(fertility_allocation, fertility, type = "l", lty = 3, ylim = c(0, max_offspring + 2), main = "Fertility vs Allocation", xlab = "Invested Wealth", ylab = "Fertility")
-points(fertility_allocation, fertility)
+points(fertility_allocation, fertility, pch = 19)
+grid(col = "gray", lty = "dotted")

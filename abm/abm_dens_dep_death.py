@@ -4,7 +4,7 @@
 # IMPORT ----
 from matplotlib import axis
 import numpy as np
-import abm_functions as func
+import functions_dens_dep_death as func
 import matplotlib.pyplot as plt
 import time as tm
 

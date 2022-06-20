@@ -4,7 +4,7 @@
 # IMPORT ----
 from matplotlib import axis
 import numpy as np
-import abm_functions_class_dep as func
+import functions_base as func
 import matplotlib.pyplot as plt
 import time as tm
 
@@ -17,15 +17,15 @@ print('started at:', current_time)
 num_class = 15
 num_ancestor = 100
 # num_ancestor = num_class * 11
-num_generation = 15
+num_generation = 12
 max_offspring = num_class
 mutation_rate = 0.005
 num_column = 10
 # [0] inheritance; [1] income; [2] total wealth (class); [3] strategy (fertility ratio); [4] fertility investment; [5] bequests; [6] fertility; [7] ancestor's class; [8] parent's class; [9] generation
 
 # environmental parameters
-starvation_threshold = 0
-# survival_birth = 0.7
+# starvation_threshold = 3
+survival_birth = 0.7
 mean_income = 3
 
 
@@ -42,7 +42,7 @@ data = np.zeros((num_ancestor, num_column))
 # INITIALIZATION ----
 ancestors = func.initialize_population(ancestors, num_class)
 ancestors = func.choose_random_strategy(ancestors)
-ancestors = func.allocate_wealth(ancestors, max_offspring, starvation_threshold)
+ancestors = func.allocate_wealth(ancestors, max_offspring, survival_birth)
 ancestors[:, 7] = ancestors[:, 2] # ancestor tag
 
 
@@ -64,7 +64,7 @@ for t in range(num_generation):
     # offspring becomes parents
     if t > 0:
         parents = offspring
-        parents = func.allocate_wealth(parents, max_offspring, starvation_threshold)
+        parents = func.allocate_wealth(parents, max_offspring, survival_birth)
         
         # record parent data
         data_new = parents

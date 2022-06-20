@@ -27,7 +27,7 @@ def choose_random_strategy(population):
     return population
 
 
-def allocate_wealth(population, max_num_offspring, survival_birth):
+def allocate_wealth(population, max_num_offspring, starvation_threshold):
     """allocate wealth between fertility investment and bequests (based on agent strategies), and get real fertility"""
 
     # fertility allocation
@@ -38,31 +38,27 @@ def allocate_wealth(population, max_num_offspring, survival_birth):
     population[:, 5] = population[:, 2] - population[:, 4]
 
     # fertility
-    population[:, 6] = realize_fertility(population[:, 4], max_num_offspring, survival_birth)
+    population[:, 6] = realize_fertility(population[:, 4], population[:, 2], max_num_offspring, starvation_threshold)
 
     return population
 
 
-def realize_fertility(fertility_allocation, max_num_offspring, survival_birth):
-    """density dependent death"""
+def realize_fertility(fertility_allocation, parent_class, max_num_offspring, starvation_threshold):
+    """class-dependent threshold"""
 
-    reproduction = np.zeros((len(fertility_allocation), 3))
+    reproduction = np.zeros((len(fertility_allocation), 4))
     reproduction[:, 0] = fertility_allocation
+    reproduction[:, 1] = parent_class
     # print("fertility_allocation", reproduction[:, 0])
-    
-    # death rate (concave function)
-    reproduction[:, 1] = 1 - survival_birth ** reproduction[:, 0]
-    
-    # death rate (linear function)
-    # reproduction[:, 1] = (1 - survival_birth) + survival_birth * reproduction[:, 0] / max_num_offspring
-    # print("death_rate", reproduction[:, 1])
+
+    # class-dependent threshold
+    reproduction[:, 2] = starvation_threshold + np.log(reproduction[:, 1] + 1)
 
     # realized fertility
-    for i in range(len(fertility_allocation)):
-        reproduction[i, 2] = np.random.binomial(reproduction[i, 0].astype(int), (1 - reproduction[i, 1]), 1)
-    # print("fertility_realized", reproduction[:, 2])
+    reproduction[:, 3] = np.round(reproduction[:, 0] - reproduction[:, 2])
+    reproduction[:, 3] = np.clip(reproduction[:, 3], 0, max_num_offspring)
 
-    return reproduction[:, 2]
+    return reproduction[:, 3].astype(int)
 
 
 # def realize_fertility(fertility_allocation, max_num_offspring, survival_birth):
@@ -93,31 +89,6 @@ def realize_fertility(fertility_allocation, max_num_offspring, survival_birth):
 #     fertility_realized = np.clip(fertility_allocation, 0, max_fertility)
 
 #     return fertility_realized
-
-
-# def adjust_strategy(data_fitness, data_strategy, step_adjustment, time):
-#     """agents adjust their strategy based on ...."""
-
-#     strategy_adjusted = np.zeros((len(data_strategy), 1))
-#     strategy_adjusted[:, 0] = data_strategy[:, time-1]
-
-#     change_strategy = data_strategy[:, time - 1] - data_strategy[:, time - 2]
-
-#     change_fitness = data_fitness[:, time - 1] - data_fitness[:, time - 2]
-
-#     # print("change_strategy", change_strategy)
-#     # print("change_fitness", change_fitness)
-#     # print("change_strategy * change_fitness", change_strategy * change_fitness)
-
-#     strategy_adjusted[change_strategy * change_fitness > 0 , 0] += step_adjustment
-
-#     strategy_adjusted[change_strategy * change_fitness < 0 , 0] -= step_adjustment
-
-#     strategy_adjusted[change_strategy * change_fitness == 0 , 0] += np.random.uniform(-0.05, 0.05, len(strategy_adjusted[change_strategy * change_fitness == 0 , 0]))
-
-#     strategy_adjusted = np.clip(strategy_adjusted, 0, 1)
-
-#     return strategy_adjusted[:, 0]
 
 
 def inherit_wealth(offspring, parents, index):

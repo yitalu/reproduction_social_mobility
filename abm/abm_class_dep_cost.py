@@ -17,7 +17,7 @@ print('started at:', current_time)
 num_class = 15
 num_ancestor = 100
 # num_ancestor = num_class * 11
-num_generation = 15
+num_generation = 12
 max_offspring = num_class
 mutation_rate = 0.005
 num_column = 10
@@ -32,9 +32,6 @@ mean_income = 3
 
 # DATA ARRAYS ----
 ancestors = np.zeros((num_ancestor, num_column))
-# data_parents = np.zeros((1, 2)) # [0] wealth; [1] srategy
-
-data = np.zeros((num_ancestor, num_column))
 # [0] inheritance; [1] income; [2] total wealth (class); [3] strategy (fertility ratio); [4] fertility investment; [5] bequests; [6] fertility; [7] ancestor's class; [8] parent's class; [9] generation
 
 
@@ -132,7 +129,7 @@ for t in range(num_generation):
     #     print("data_parents", data_parents)
 
 column_name = 'inheritance, income, wealth, strategy, fertility investment, bequests, fertility, ancestor class, parent class, generation'
-np.savetxt('./data/data.csv', data, delimiter=',', fmt='%.2f', header=column_name)
+np.savetxt('./data/data_cultural.csv', data, delimiter=',', fmt='%.2f', header=column_name)
 
 print("number of ancestors", num_ancestor)
 print("number of last generation", len(offspring))

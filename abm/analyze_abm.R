@@ -1,6 +1,7 @@
 rm(list = ls())
 # install.packages("hexbin")
 library(data.table)
+library(rethinking)
 # library(lattice)
 # library(ggplot2)
 # library(hexbin)
@@ -12,15 +13,16 @@ library(data.table)
 # Read Data ---------------------------------------------------------------
 # d <- read.csv("./data/data.csv")
 d <- fread("./data/data.csv")
+d <- fread("./data/data_cultural.csv")
+d <- fread("./data/data_ecological.csv")
 colnames(d)[1] <- "inheritance"
-
-
+View(d)
 
 
 # Growth of Population ----------------------------------------------------
 tiff(file="./figures/population_growth.tiff", width = 2000, height = 1600, res = 300)
-population_grwoth <- d[, .(.N), by = generation]
 pdf(file = "./figures/population_growth_death.pdf")
+population_grwoth <- d[, .(.N), by = generation]
 plot(population_grwoth, type = "l", main = "Population Growth", xlab = "Generation", ylab = "Population Size")
 grid(col = "gray", lty = "dotted")
 dev.off()

@@ -32,9 +32,6 @@ mean_income = 3
 
 # DATA ARRAYS ----
 ancestors = np.zeros((num_ancestor, num_column))
-# data_parents = np.zeros((1, 2)) # [0] wealth; [1] srategy
-
-data = np.zeros((num_ancestor, num_column))
 # [0] inheritance; [1] income; [2] total wealth (class); [3] strategy (fertility ratio); [4] fertility investment; [5] bequests; [6] fertility; [7] ancestor's class; [8] parent's class; [9] generation
 
 
@@ -132,7 +129,7 @@ for t in range(num_generation):
     #     print("data_parents", data_parents)
 
 column_name = 'inheritance, income, wealth, strategy, fertility investment, bequests, fertility, ancestor class, parent class, generation'
-np.savetxt('./data/data.csv', data, delimiter=',', fmt='%.2f', header=column_name)
+np.savetxt('./data/data_ecological.csv', data, delimiter=',', fmt='%.2f', header=column_name)
 
 print("number of ancestors", num_ancestor)
 print("number of last generation", len(offspring))

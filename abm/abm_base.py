@@ -32,9 +32,6 @@ mean_income = 3
 
 # DATA ARRAYS ----
 ancestors = np.zeros((num_ancestor, num_column))
-# data_parents = np.zeros((1, 2)) # [0] wealth; [1] srategy
-
-data = np.zeros((num_ancestor, num_column))
 # [0] inheritance; [1] income; [2] total wealth (class); [3] strategy (fertility ratio); [4] fertility investment; [5] bequests; [6] fertility; [7] ancestor's class; [8] parent's class; [9] generation
 
 
